@@ -4,6 +4,12 @@ require_once 'Config.php';
 
 class Resource
 {
+    /**
+     * loads the string from the user specified language set (xml file) for the requested id
+     * @param $id
+     * @return string on success,
+     * empty string otherwise
+     */
     public static function loadString($id)
     {
         $language = self::getUserLanguage();
@@ -28,6 +34,11 @@ class Resource
         return "";
     }
 
+    /**
+     * try to determine the user language with the specified method (Config.php),
+     * default language will be returned on failure
+     * @return string
+     */
     private static function getUserLanguage()
     {
         if (strcmp(LANGUAGE_DETECTION, "header") === 0) {
@@ -58,6 +69,11 @@ class Resource
         return DEFAULT_LANGUAGE;
     }
 
+    /**
+     * Try to read $_SERVER['HTTP_ACCEPT_LANGUAGE'] and identify the language,
+     * default language will be returned on failure
+     * @return string
+     */
     private static function getLanguageHeader()
     {
         //set default language, if language could not be determined
@@ -65,6 +81,12 @@ class Resource
         return empty($language) ? DEFAULT_LANGUAGE : $language;
     }
 
+    /**
+     * Creates a SimpleXMLElement of a XML file for the requested language,
+     * empty SimpleXMLElement will be returned on failure
+     * @param $language
+     * @return SimpleXMLElement
+     */
     private static function getDictionary($language)
     {
         $arrSupportedLanguages = unserialize(SUPPORTED_LANGUAGES);
@@ -91,6 +113,11 @@ class Resource
         return simplexml_load_file($fileDictionary);
     }
 
+    /**
+     * Checks if the requested dictionary is available and readable
+     * @param $file
+     * @return bool
+     */
     private static function dictionaryFileAvailable($file)
     {
         return (file_exists($file) && is_readable($file));
