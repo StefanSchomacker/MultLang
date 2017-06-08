@@ -22,8 +22,8 @@ class Resource
             }
         }
 
-        //string not found -> search in english dictionary
-        $dictionary = self::getDictionary("en");
+        //string not found -> search in default dictionary
+        $dictionary = self::getDictionary(DEFAULT_LANGUAGE);
         foreach ($dictionary->string as $item) {
             if ($item['id'] == $id) {
                 return $item;
