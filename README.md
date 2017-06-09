@@ -11,6 +11,23 @@
 ## Installation
 It's very simple to include this library in your project.
 
+**Composer**
+
+add this in your `composer.json` and run `composer install`:
+```
+"repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/StefanSchomacker/MultLang"
+        }
+    ],
+    "require": {
+        "multlang/multlang": "dev-master"
+    }
+```
+
+_or_
+
 **Download Zip**
 
 _or_
