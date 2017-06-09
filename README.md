@@ -13,7 +13,7 @@ It's very simple to include this library in your project.
 
 **Composer**
 
-add this in your `composer.json` and run `composer install`:
+add this to your `composer.json` and run `composer install`:
 ```
 "repositories": [
         {
