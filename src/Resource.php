@@ -35,7 +35,7 @@ class Resource
     }
 
     /**
-     * try to determine the user language with the specified method (Config.php),
+     * try to determine the user language with the specified method (Config.php);
      * default language will be returned on failure
      * @return string
      */
@@ -47,21 +47,11 @@ class Resource
 
         } else if (strcmp(LANGUAGE_DETECTION, "cookie") === 0) {
 
-            //try to read cookies
-            if (!isset($_COOKIE[COOKIE_NAME])) {
-                $language = self::getLanguageHeader();
-                setcookie(COOKIE_NAME, $language, time() + 60 * 60 * 24 * 2);
-                return $language;
-            } else {
-                //cookie is already set
-                return $_COOKIE[COOKIE_NAME];
-            }
+            return self::getLanguageCookie();
 
         } else if (strcmp(LANGUAGE_DETECTION, "rewrite") === 0) {
 
-            $language = explode('/', trim($_SERVER["REQUEST_URI"], '/'))[0];
-            //ISO 639-1 -> only 2 letters allowed
-            return strlen($language) !== 2 ? self::getLanguageHeader() : $language;
+            return self::getLanguageRewrite();
 
         }
 
@@ -70,7 +60,7 @@ class Resource
     }
 
     /**
-     * Try to read $_SERVER['HTTP_ACCEPT_LANGUAGE'] and identify the language,
+     * Try to read $_SERVER['HTTP_ACCEPT_LANGUAGE'] and identify the language;
      * default language will be returned on failure
      * @return string
      */
@@ -82,7 +72,40 @@ class Resource
     }
 
     /**
-     * Creates a SimpleXMLElement of a XML file for the requested language,
+     * Try to read cookie to identify the language;
+     * If no cookie is set, it will use the 'header' method and try to set the cookie
+     * @return string
+     */
+    private static function getLanguageCookie()
+    {
+        //try to read cookies
+        if (!isset($_COOKIE[COOKIE_NAME])) {
+            $language = self::getLanguageHeader();
+            setcookie(COOKIE_NAME, $language, time() + 60 * 60 * 24 * 2);
+            return $language;
+        } else {
+            //cookie is already set
+            return $_COOKIE[COOKIE_NAME];
+        }
+    }
+
+    /**
+     * splits the $_SERVER['REQUEST_URI'] and identify the language;
+     * If no argument is set, it will use the 'header' method
+     *
+     * You can use a URL structure like example.com/en/index.php
+     *
+     * @return string
+     */
+    private static function getLanguageRewrite()
+    {
+        $language = explode('/', trim($_SERVER["REQUEST_URI"], '/'))[0];
+        //ISO 639-1 -> only 2 letters allowed
+        return strlen($language) !== 2 ? self::getLanguageHeader() : $language;
+    }
+
+    /**
+     * Creates a SimpleXMLElement of a XML file for the requested language;
      * empty SimpleXMLElement will be returned on failure
      * @param $language
      * @return SimpleXMLElement
