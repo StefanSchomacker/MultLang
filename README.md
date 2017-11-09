@@ -44,6 +44,8 @@ git clone https://github.com/StefanSchomacker/MultLang.git
 
 Just call the static function in your PHP Script.
 
+You can also view the example [here](https://github.com/StefanSchomacker/MultLang/tree/master/example).
+
 _**index.php:**_
 ```php
 <?php
