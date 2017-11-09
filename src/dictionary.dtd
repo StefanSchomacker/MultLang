@@ -1,6 +1,6 @@
-<!DOCTYPE
-        resources [
-        <!ELEMENT resources (string)*>
-        <!ELEMENT string (#PCDATA)>
-        <!ATTLIST string id CDATA #REQUIRED>
-        ]>
+<?xml encoding="UTF-8"?>
+
+<!ELEMENT resources (string)>
+<!ATTLIST resources xmlns CDATA #FIXED ''>
+<!ELEMENT string (#PCDATA)>
+<!ATTLIST string xmlns CDATA #FIXED '' id NMTOKEN #REQUIRED>
