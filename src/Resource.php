@@ -41,22 +41,21 @@ class Resource
      */
     private static function getUserLanguage()
     {
-        if (strcmp(LANGUAGE_DETECTION, "header") === 0) {
-
-            return self::getLanguageHeader();
-
-        } else if (strcmp(LANGUAGE_DETECTION, "cookie") === 0) {
-
-            return self::getLanguageCookie();
-
-        } else if (strcmp(LANGUAGE_DETECTION, "rewrite") === 0) {
-
-            return self::getLanguageRewrite();
-
+        switch (LANGUAGE_DETECTION) {
+            case "header":
+                $detectedLanguage = self::getLanguageHeader();
+                break;
+            case "cookie":
+                $detectedLanguage = self::getLanguageCookie();
+                break;
+            case "rewrite":
+                $detectedLanguage = self::getLanguageRewrite();
+                break;
+            default:
+                //if nothing is set, return default language
+                $detectedLanguage = DEFAULT_LANGUAGE;
         }
-
-        //if nothing is set, return default language
-        return DEFAULT_LANGUAGE;
+        return $detectedLanguage;
     }
 
     /**
