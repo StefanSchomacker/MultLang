@@ -42,14 +42,17 @@ git clone https://github.com/StefanSchomacker/MultLang.git
 
 ### Usage
 
-Just call the static function in your PHP Script.
+Just create a config object once and call the load function in your PHP Script.
 
 You can also view the example [here](https://github.com/StefanSchomacker/MultLang/tree/master/example).
 
 _**index.php:**_
 ```php
 <?php
-echo Resource::loadString("sample_text");
+//get default config or set it manually
+$config = Config::getDefaults();
+$resource = new Resource($config);
+echo $resource->loadString("sample_text");
 ?>
 ```
 
@@ -76,7 +79,7 @@ _**/dictionary/german.xml:**_
 ```
 
 ### Configuration
-Edit Config.php if needed:
+Edit config values if needed:
 
 const | default value | description
 ------------ | ------------- | -------------
@@ -87,6 +90,14 @@ DEFAULT_DICTIONARY | `default.xml` | This XML file will be used, if other files 
 LANGUAGE_DETECTION | `cookie` | This defines the method to detect the language. Choose between **['header'](#header)**, **['cookie'](#cookie)** and **['rewrite'](#rewrite)**.
 COOKIE_NAME | `language` | Default key for the cookie.
 SUPPORTED_LANGUAGES | `serialize(array(DEFAULT_LANGUAGE => DEFAULT_DICTIONARY))` | Contains all supported languages. <br/> Example: `"de" => "german.xml",`
+
+Example:
+```php
+<?php
+$config = Config::getInstance();
+$config->set("DOCUMENT_ROOT", "/");
+?>
+```
 
 ## Language detection methods
 

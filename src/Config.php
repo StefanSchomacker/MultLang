@@ -1,38 +1,70 @@
 <?php
-define('DOCUMENT_ROOT', dirname(__FILE__) . DIRECTORY_SEPARATOR);
 
-//define your path to the dictionaries
-define('PATH_TO_DICTIONARIES', DOCUMENT_ROOT . DIRECTORY_SEPARATOR . 'dictionary' . DIRECTORY_SEPARATOR);
-
-//define your default language here
-define('DEFAULT_LANGUAGE', 'en');
-
-//define your default language set here
-define('DEFAULT_DICTIONARY', 'default.xml');
-
-/*
- * Choose between 'header' | 'cookie' | 'rewrite'
- *
- * header:
- *      this method uses $_SERVER['HTTP_ACCEPT_LANGUAGE']
- * cookie:
- *      this method uses cookies.
- *      If no cookie is set, it will use the 'header' method
- *      and try to set the cookie.
- * rewrite:
- *      this method splits the $_SERVER['REQUEST_URI']
- *      and identify the language
- *      If no argument is set, it will use the 'header' method
- *      You can use a URL structure like example.com/en/index.php
+/**
+ * Class Config Wrapper
  */
-define('LANGUAGE_DETECTION', 'cookie');
-define('COOKIE_NAME', 'language');
+class Config
+{
+    private static $inst;
+    private static $values = [];
 
-//set all languages you want to support
-define("SUPPORTED_LANGUAGES", serialize(
-    array(
-        DEFAULT_LANGUAGE => DEFAULT_DICTIONARY,
-//        "de" => "german.xml",
-//        "es" => "spanish.xml"
-    )
-));
+    private function __construct()
+    {
+    }
+
+    public static function getInstance()
+    {
+        if (!isset(self::$inst)) {
+            self::$inst = new self();
+        }
+        return self::$inst;
+    }
+
+    public static function getDefaults()
+    {
+        $config = self::getInstance();
+
+        $config->set('DOCUMENT_ROOT', dirname(__FILE__) . DIRECTORY_SEPARATOR);
+        $config->set('PATH_TO_DICTIONARIES', $config->get('DOCUMENT_ROOT') . DIRECTORY_SEPARATOR . 'dictionary' . DIRECTORY_SEPARATOR);
+        $config->set('DEFAULT_LANGUAGE', 'en');
+        $config->set('DEFAULT_DICTIONARY', 'default.xml');
+        /*
+         * Choose between 'header' | 'cookie' | 'rewrite'
+         *
+         * header:
+         *      this method uses $_SERVER['HTTP_ACCEPT_LANGUAGE']
+         * cookie:
+         *      this method uses cookies.
+         *      If no cookie is set, it will use the 'header' method
+         *      and try to set the cookie.
+         * rewrite:
+         *      this method splits the $_SERVER['REQUEST_URI']
+         *      and identify the language
+         *      If no argument is set, it will use the 'header' method
+         *      You can use a URL structure like example.com/en/index.php
+         */
+        $config->set('LANGUAGE_DETECTION', 'cookie');
+        $config->set('COOKIE_NAME', 'language');
+        $config->set("SUPPORTED_LANGUAGES", array(
+                $config->get('DEFAULT_LANGUAGE') => $config->get('DEFAULT_DICTIONARY'),
+//                "de" => "german.xml",
+//                "es" => "spanish.xml"
+            )
+        );
+        return $config;
+    }
+
+    public function set($key, $value)
+    {
+        self::$values[$key] = $value;
+    }
+
+    public function get($key)
+    {
+        if (isset(self::$values[$key])) {
+            return self::$values[$key];
+        }
+
+        return null;
+    }
+}
