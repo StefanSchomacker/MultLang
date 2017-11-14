@@ -1,7 +1,6 @@
 <?php
 declare(strict_types=1);
-require_once "../src/Resource.php";
-require_once "../src/Config.php";
+require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'autoload.php';
 
 use PHPUnit\Framework\TestCase;
 
@@ -13,7 +12,7 @@ class ResourceTest extends TestCase
 
     public function provider()
     {
-        $configHeader =  $this->getTestConfig();
+        $configHeader = $this->getTestConfig();
         $configHeader->set("LANGUAGE_DETECTION", "header");
         $configRewrite = $this->getTestConfig();
         $configRewrite->set("LANGUAGE_DETECTION", "rewrite");

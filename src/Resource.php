@@ -1,7 +1,6 @@
 <?php
 
-require_once 'Config.php';
-require_once 'Config.php';
+require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'autoload.php';
 
 class Resource
 {
