@@ -5,27 +5,14 @@
  */
 class Config
 {
-    private static $inst;
-    private static $values = [];
-
-    private function __construct()
-    {
-    }
-
-    public static function getInstance()
-    {
-        if (!isset(self::$inst)) {
-            self::$inst = new self();
-        }
-        return self::$inst;
-    }
+    private $values = [];
 
     public static function getDefaults()
     {
-        $config = self::getInstance();
+        $config = new Config();
 
         $config->set('DOCUMENT_ROOT', dirname(__FILE__) . DIRECTORY_SEPARATOR);
-        $config->set('PATH_TO_DICTIONARIES', $config->get('DOCUMENT_ROOT') . DIRECTORY_SEPARATOR . 'dictionary' . DIRECTORY_SEPARATOR);
+        $config->set('PATH_TO_DICTIONARIES', $config->get('DOCUMENT_ROOT') . 'dictionary' . DIRECTORY_SEPARATOR);
         $config->set('DEFAULT_LANGUAGE', 'en');
         $config->set('DEFAULT_DICTIONARY', 'default.xml');
         /*
@@ -56,13 +43,14 @@ class Config
 
     public function set($key, $value)
     {
-        self::$values[$key] = $value;
+        $this->values[$key] = $value;
+
     }
 
     public function get($key)
     {
-        if (isset(self::$values[$key])) {
-            return self::$values[$key];
+        if (isset($this->values[$key])) {
+            return $this->values[$key];
         }
 
         return null;

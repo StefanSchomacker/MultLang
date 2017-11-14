@@ -16,9 +16,17 @@ class Resource
         $this->config = $config;
     }
 
+    /**
+     * Returns the config object, which is set with the constructor
+     * @return Config
+     */
+    public function getConfig()
+    {
+        return $this->config;
+    }
 
     /**
-     * loads the string from the user specified language set (xml file) for the requested id
+     * Loads the string from the user specified language set (xml file) for the requested id
      * @param $id
      * @return string on success,
      * empty string otherwise
