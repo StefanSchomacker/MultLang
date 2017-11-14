@@ -1,11 +1,11 @@
 language: php
-os:
-  - linux
-sudo: false
 php:
-  - 7.0
   - 7.1
-before_install:
-  - travis_retry composer self-update
-  - composer install
-script: phpunit --no-configuration .
+  - 7.0
+
+before_script:
+  - composer self-update
+  - composer install --no-interaction --prefer-source
+
+script:
+- vendor/bin/phpunit --configuration phpunit.xml
