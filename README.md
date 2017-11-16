@@ -94,7 +94,7 @@ SUPPORTED_LANGUAGES | `serialize(array(DEFAULT_LANGUAGE => DEFAULT_DICTIONARY))`
 Example:
 ```php
 <?php
-$config = Config::getInstance();
+$config = Config::getDefaults();
 $config->set("DOCUMENT_ROOT", "/");
 ?>
 ```
