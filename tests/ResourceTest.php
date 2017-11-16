@@ -13,9 +13,9 @@ class ResourceTest extends TestCase
     public function provider()
     {
         $configHeader = $this->getTestConfig();
-        $configHeader->set("LANGUAGE_DETECTION", "header");
+        $configHeader->set(Config::LANGUAGE_DETECTION, "header");
         $configRewrite = $this->getTestConfig();
-        $configRewrite->set("LANGUAGE_DETECTION", "rewrite");
+        $configRewrite->set(Config::LANGUAGE_DETECTION, "rewrite");
 
         return array(
             array(new Resource($configHeader)),
@@ -26,13 +26,13 @@ class ResourceTest extends TestCase
     private function getTestConfig()
     {
         $config = Config::getDefaults();
-        $config->set("SUPPORTED_LANGUAGES", array(
-                $config->get('DEFAULT_LANGUAGE') => $config->get('DEFAULT_DICTIONARY'),
+        $config->set(Config::SUPPORTED_LANGUAGES, array(
+                $config->get(Config::DEFAULT_LANGUAGE) => $config->get(Config::DEFAULT_DICTIONARY),
                 "de" => "german.xml",
             )
         );
-        $config->set('DOCUMENT_ROOT', dirname(__FILE__) . DIRECTORY_SEPARATOR);
-        $config->set("PATH_TO_DICTIONARIES", $config->get('DOCUMENT_ROOT') . "resources" . DIRECTORY_SEPARATOR);
+        $config->set(Config::DOCUMENT_ROOT, dirname(__FILE__) . DIRECTORY_SEPARATOR);
+        $config->set(Config::PATH_TO_DICTIONARIES, $config->get(Config::DOCUMENT_ROOT) . "resources" . DIRECTORY_SEPARATOR);
         return $config;
     }
 
@@ -40,13 +40,13 @@ class ResourceTest extends TestCase
     {
         $config = $this->getTestConfig();
 
-        $this->assertNotNull($config->get("DOCUMENT_ROOT"));
-        $this->assertNotNull($config->get("PATH_TO_DICTIONARIES"));
-        $this->assertNotNull($config->get("DEFAULT_LANGUAGE"));
-        $this->assertNotNull($config->get("DEFAULT_DICTIONARY"));
-        $this->assertNotNull($config->get("LANGUAGE_DETECTION"));
-        $this->assertNotNull($config->get("COOKIE_NAME"));
-        $this->assertNotNull($config->get("SUPPORTED_LANGUAGES"));
+        $this->assertNotNull($config->get(Config::DOCUMENT_ROOT));
+        $this->assertNotNull($config->get(Config::PATH_TO_DICTIONARIES));
+        $this->assertNotNull($config->get(Config::DEFAULT_LANGUAGE));
+        $this->assertNotNull($config->get(Config::DEFAULT_DICTIONARY));
+        $this->assertNotNull($config->get(Config::LANGUAGE_DETECTION));
+        $this->assertNotNull($config->get(Config::COOKIE_NAME));
+        $this->assertNotNull($config->get(Config::SUPPORTED_LANGUAGES));
         $this->assertNull($config->get("not_valid"));
     }
 
@@ -91,7 +91,7 @@ class ResourceTest extends TestCase
         $this->assertEquals("This is a sample text in english", $resource->loadString("sample_text"));
         /** @var Config $config */
         $config = $resource->getConfig();
-        $config->set('DEFAULT_LANGUAGE', 'de');
+        $config->set(Config::DEFAULT_LANGUAGE, 'de');
         $this->assertEquals("Das ist ein deutscher Beispieltext", $resource->loadString("sample_text"));
     }
 

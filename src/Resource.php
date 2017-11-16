@@ -43,7 +43,7 @@ class Resource
         }
 
         //string not found -> search in default dictionary
-        $dictionary = self::getDictionary($this->config->get('DEFAULT_LANGUAGE'));
+        $dictionary = self::getDictionary($this->config->get(Config::DEFAULT_LANGUAGE));
         foreach ($dictionary->string as $item) {
             if ($item['id'] == $id) {
                 return $item;
@@ -61,7 +61,7 @@ class Resource
      */
     private function getUserLanguage()
     {
-        switch ($this->config->get('LANGUAGE_DETECTION')) {
+        switch ($this->config->get(Config::LANGUAGE_DETECTION)) {
             case "header":
                 $detectedLanguage = self::getLanguageHeader();
                 break;
@@ -73,7 +73,7 @@ class Resource
                 break;
             default:
                 //if nothing is set, return default language
-                $detectedLanguage = $this->config->get('DEFAULT_LANGUAGE');
+                $detectedLanguage = $this->config->get(Config::DEFAULT_LANGUAGE);
         }
         return $detectedLanguage;
     }
@@ -87,7 +87,7 @@ class Resource
     {
         //set default language, if language could not be determined
         $language = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
-        return empty($language) ? $this->config->get('DEFAULT_LANGUAGE') : $language;
+        return empty($language) ? $this->config->get(Config::DEFAULT_LANGUAGE) : $language;
     }
 
     /**
@@ -98,7 +98,7 @@ class Resource
     private function getLanguageCookie()
     {
         //try to read cookies
-        $cookieName = $this->config->get('COOKIE_NAME');
+        $cookieName = $this->config->get(Config::COOKIE_NAME);
         if (!isset($_COOKIE[$cookieName])) {
             $language = self::getLanguageHeader();
             setcookie($cookieName, $language, time() + 60 * 60 * 24 * 2);
@@ -132,21 +132,21 @@ class Resource
      */
     private function getDictionary($language)
     {
-        $arrSupportedLanguages = $this->config->get('SUPPORTED_LANGUAGES');
+        $arrSupportedLanguages = $this->config->get(Config::SUPPORTED_LANGUAGES);
 
         //check if requested language is supported
         if (isset($arrSupportedLanguages[$language])) {
             $dictionaryName = $arrSupportedLanguages[$language];
         } else {
-            $dictionaryName = $this->config->get('DEFAULT_DICTIONARY');
+            $dictionaryName = $this->config->get(Config::DEFAULT_DICTIONARY);
         }
 
         //set path to dictionary for user language
-        $fileDictionary = $this->config->get('PATH_TO_DICTIONARIES') . $dictionaryName;
+        $fileDictionary = $this->config->get(Config::PATH_TO_DICTIONARIES) . $dictionaryName;
 
         //use default dictionary if file is not available
         if (!self::dictionaryFileAvailable($fileDictionary)) {
-            $fileDictionary = $this->config->get('PATH_TO_DICTIONARIES') . $this->config->get('DEFAULT_DICTIONARY');
+            $fileDictionary = $this->config->get(Config::PATH_TO_DICTIONARIES) . $this->config->get(Config::DEFAULT_DICTIONARY);
             if (!self::dictionaryFileAvailable($fileDictionary)) {
                 //return empty xml, if default file is also not available
                 return new \SimpleXMLElement("<resources></resources>");

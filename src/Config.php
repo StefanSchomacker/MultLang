@@ -5,16 +5,24 @@
  */
 class Config
 {
+    const DOCUMENT_ROOT = 'DOCUMENT_ROOT';
+    const PATH_TO_DICTIONARIES = 'PATH_TO_DICTIONARIES';
+    const DEFAULT_LANGUAGE = 'DEFAULT_LANGUAGE';
+    const DEFAULT_DICTIONARY = 'DEFAULT_DICTIONARY';
+    const LANGUAGE_DETECTION = 'LANGUAGE_DETECTION';
+    const COOKIE_NAME = 'COOKIE_NAME';
+    const SUPPORTED_LANGUAGES = 'SUPPORTED_LANGUAGES';
+
     private $values = [];
 
     public static function getDefaults()
     {
         $config = new Config();
 
-        $config->set('DOCUMENT_ROOT', dirname(__DIR__) . DIRECTORY_SEPARATOR);
-        $config->set('PATH_TO_DICTIONARIES', $config->get('DOCUMENT_ROOT') . 'dictionary' . DIRECTORY_SEPARATOR);
-        $config->set('DEFAULT_LANGUAGE', 'en');
-        $config->set('DEFAULT_DICTIONARY', 'default.xml');
+        $config->set(Config::DOCUMENT_ROOT, dirname(__DIR__) . DIRECTORY_SEPARATOR);
+        $config->set(Config::PATH_TO_DICTIONARIES, $config->get(Config::DOCUMENT_ROOT) . 'dictionary' . DIRECTORY_SEPARATOR);
+        $config->set(Config::DEFAULT_LANGUAGE, 'en');
+        $config->set(Config::DEFAULT_DICTIONARY, 'default.xml');
         /*
          * Choose between 'header' | 'cookie' | 'rewrite'
          *
@@ -30,10 +38,10 @@ class Config
          *      If no argument is set, it will use the 'header' method
          *      You can use a URL structure like example.com/en/index.php
          */
-        $config->set('LANGUAGE_DETECTION', 'cookie');
-        $config->set('COOKIE_NAME', 'language');
-        $config->set("SUPPORTED_LANGUAGES", array(
-                $config->get('DEFAULT_LANGUAGE') => $config->get('DEFAULT_DICTIONARY'),
+        $config->set(Config::LANGUAGE_DETECTION, 'cookie');
+        $config->set(Config::COOKIE_NAME, 'language');
+        $config->set(Config::SUPPORTED_LANGUAGES, array(
+                $config->get(Config::DEFAULT_LANGUAGE) => $config->get(Config::DEFAULT_DICTIONARY),
 //                "de" => "german.xml",
 //                "es" => "spanish.xml"
             )

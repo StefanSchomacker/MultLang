@@ -89,13 +89,13 @@ DEFAULT_LANGUAGE | `en` | Default language in ISO 639-1 format. The constant wil
 DEFAULT_DICTIONARY | `default.xml` | This XML file will be used, if other files are not available. This file should contain all string items.
 LANGUAGE_DETECTION | `cookie` | This defines the method to detect the language. Choose between **['header'](#header)**, **['cookie'](#cookie)** and **['rewrite'](#rewrite)**.
 COOKIE_NAME | `language` | Default key for the cookie.
-SUPPORTED_LANGUAGES | `serialize(array(DEFAULT_LANGUAGE => DEFAULT_DICTIONARY))` | Contains all supported languages. <br/> Example: `"de" => "german.xml",`
+SUPPORTED_LANGUAGES | `array(DEFAULT_LANGUAGE => DEFAULT_DICTIONARY)` | Contains all supported languages. <br/> Example: `"de" => "german.xml",`
 
 Example:
 ```php
 <?php
 $config = Config::getDefaults();
-$config->set("DOCUMENT_ROOT", "/");
+$config->set(Config::DOCUMENT_ROOT, "/");
 ?>
 ```
 
