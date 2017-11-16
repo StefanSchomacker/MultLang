@@ -11,7 +11,7 @@ class Config
     {
         $config = new Config();
 
-        $config->set('DOCUMENT_ROOT', dirname(__FILE__) . DIRECTORY_SEPARATOR);
+        $config->set('DOCUMENT_ROOT', dirname(__DIR__) . DIRECTORY_SEPARATOR);
         $config->set('PATH_TO_DICTIONARIES', $config->get('DOCUMENT_ROOT') . 'dictionary' . DIRECTORY_SEPARATOR);
         $config->set('DEFAULT_LANGUAGE', 'en');
         $config->set('DEFAULT_DICTIONARY', 'default.xml');

@@ -83,7 +83,7 @@ Edit config values if needed:
 
 const | default value | description
 ------------ | ------------- | -------------
-DOCUMENT_ROOT | `dirname(__FILE__) . DIRECTORY_SEPARATOR` | Path to document root
+DOCUMENT_ROOT | `dirname(__DIR__) . DIRECTORY_SEPARATOR` | Path to document root
 PATH_TO_DICTIONARIES | `DOCUMENT_ROOT . DIRECTORY_SEPARATOR . 'dictionary' . DIRECTORY_SEPARATOR` | Path to dictionary folder. Folder contains all XML files
 DEFAULT_LANGUAGE | `en` | Default language in ISO 639-1 format. The constant will be used, if language cannot be determined
 DEFAULT_DICTIONARY | `default.xml` | This XML file will be used, if other files are not available. This file should contain all string items.
