@@ -32,7 +32,7 @@ add this to your `composer.json` and run `composer install`:
 
 ### Clone Git
 
-```
+```bash
 git clone https://github.com/StefanSchomacker/MultLang.git
 ```
 
