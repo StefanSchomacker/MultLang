@@ -30,6 +30,8 @@ _or_
 
 **Download Zip**
 
+[https://github.com/StefanSchomacker/MultLang/archive/master.zip](https://github.com/StefanSchomacker/MultLang/archive/master.zip)
+
 _or_
 
 **Clone Git**
