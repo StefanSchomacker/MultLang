@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE resources SYSTEM "https://raw.githubusercontent.com/StefanSchomacker/MultLang/master/src/dictionary.dtd">
-<resources>
+<resources lang="es">
 
     <!-- Header -->
     <string id="sample_text">Se trata de un texto espa&#xF1;ol</string>
