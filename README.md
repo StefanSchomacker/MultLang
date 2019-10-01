@@ -1,6 +1,6 @@
 # MultLang - PHP Multi-Language Support [![Build Status](https://travis-ci.org/StefanSchomacker/MultLang.svg?branch=master)](https://travis-ci.org/StefanSchomacker/MultLang)
 
-### Overview
+## Overview
 * All strings are saved in XML files
 * Automatic language detection: Methods:
     * [header](#header)
