@@ -14,7 +14,8 @@ It's very simple to include this library in your project.
 ### Composer
 
 add this to your `composer.json` and run `composer install`:
-```
+```json
+{
 "repositories": [
         {
             "type": "vcs",
@@ -24,6 +25,7 @@ add this to your `composer.json` and run `composer install`:
     "require": {
         "multlang/multlang": "dev-master"
     }
+}
 ```
 
 ### Download Zip
