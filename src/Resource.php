@@ -37,21 +37,31 @@ class Resource
         $dictionary = self::getDictionary($language);
 
         //search for string in resources
-        foreach ($dictionary->string as $item) {
-            if (strtolower($item['id']) == strtolower($id)) {
-                return $item;
-            }
-        }
+        return $this->findIdInDictionary($id, $language, $dictionary);
+    }
 
-        //string not found -> search in default dictionary
-        $dictionary = self::getDictionary($this->config->get(Config::DEFAULT_LANGUAGE));
-        foreach ($dictionary->string as $item) {
-            if (strtolower($item['id']) == strtolower($id)) {
-                return $item;
-            }
-        }
+    /**
+     * Searches for the id in the dictionary.
+     * If the key was not found, the default dictionary
+     * is used.
+     * @param string $id
+     * @param $language
+     * @param SimpleXMLElement $dictionary
+     * @return string on success,
+     * empty string otherwise
+     */
+    private function findIdInDictionary($id, $language, $dictionary)
+    {
+        $xPath = "//string[@id='$id']/text()";
 
-        //id not found
+        $xPathResult = $dictionary->xpath($xPath);
+        if (!empty($xPathResult)) {
+            return $xPathResult[0];
+        } else if (strcmp($language, $this->config->get(Config::DEFAULT_LANGUAGE)) !== 0) {
+            //string not found -> search in default dictionary
+            $dictionary = self::getDictionary($this->config->get(Config::DEFAULT_LANGUAGE));
+            return $this->findIdInDictionary($id, $this->config->get(Config::DEFAULT_LANGUAGE), $dictionary);
+        }
         return "";
     }
 
