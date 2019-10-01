@@ -3,9 +3,9 @@
 ## Overview
 * All strings are saved in XML files
 * Automatic language detection: Methods:
-    * [header](#header)
-    * [cookie](#cookie)
-    * [rewrite](#rewrite)
+  * [header](#header)
+  * [cookie](#cookie)
+  * [rewrite](#rewrite)
 * Simple string access
 
 ## Installation
