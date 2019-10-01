@@ -25,7 +25,8 @@ class Resource
     }
 
     /**
-     * Loads the string from the user specified language set (xml file) for the requested id
+     * Loads the string from the user specified language set (xml file) for the requested id.
+     * The case of the key is ignored.
      * @param $id
      * @return string on success,
      * empty string otherwise
@@ -37,7 +38,7 @@ class Resource
 
         //search for string in resources
         foreach ($dictionary->string as $item) {
-            if ($item['id'] == $id) {
+            if (strtolower($item['id']) == strtolower($id)) {
                 return $item;
             }
         }
@@ -45,7 +46,7 @@ class Resource
         //string not found -> search in default dictionary
         $dictionary = self::getDictionary($this->config->get(Config::DEFAULT_LANGUAGE));
         foreach ($dictionary->string as $item) {
-            if ($item['id'] == $id) {
+            if (strtolower($item['id']) == strtolower($id)) {
                 return $item;
             }
         }
