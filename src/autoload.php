@@ -1,5 +1,7 @@
 <?php
-spl_autoload_register(function ($class) {
-    $class = str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
-    require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . $class);
+spl_autoload_register(function ($name) {
+    $fileName = __DIR__ . DIRECTORY_SEPARATOR . str_replace('\\', DIRECTORY_SEPARATOR, $name) . '.php';
+    if (file_exists($fileName)) {
+        require_once $fileName;
+    }
 });

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE resources SYSTEM "https://raw.githubusercontent.com/StefanSchomacker/MultLang/master/src/dictionary.dtd">
-<resources>
+<resources lang="en">
 
     <string id="sample_text">This is a sample text in english</string>
     <string id="not_found_in_german">String not found in german.xml</string>
