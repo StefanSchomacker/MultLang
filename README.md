@@ -11,7 +11,7 @@
 ## Installation
 It's very simple to include this library in your project.
 
-**Composer**
+### Composer
 
 add this to your `composer.json` and run `composer install`:
 ```
@@ -26,15 +26,11 @@ add this to your `composer.json` and run `composer install`:
     }
 ```
 
-_or_
-
-**Download Zip**
+### Download Zip
 
 [https://github.com/StefanSchomacker/MultLang/archive/master.zip](https://github.com/StefanSchomacker/MultLang/archive/master.zip)
 
-_or_
-
-**Clone Git**
+### Clone Git
 
 ```
 git clone https://github.com/StefanSchomacker/MultLang.git
