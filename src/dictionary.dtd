@@ -1,6 +1,6 @@
 <?xml encoding="UTF-8"?>
 
 <!ELEMENT resources (string)*>
-<!ATTLIST resources xmlns CDATA #FIXED ''>
+<!ATTLIST resources lang CDATA #REQUIRED>
 <!ELEMENT string (#PCDATA)>
 <!ATTLIST string xmlns CDATA #FIXED '' id NMTOKEN #REQUIRED>
