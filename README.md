@@ -1,20 +1,21 @@
 # MultLang - PHP Multi-Language Support [![Build Status](https://travis-ci.org/StefanSchomacker/MultLang.svg?branch=master)](https://travis-ci.org/StefanSchomacker/MultLang)
 
-### Overview
+## Overview
 * All strings are saved in XML files
 * Automatic language detection: Methods:
-    * [header](#header)
-    * [cookie](#cookie)
-    * [rewrite](#rewrite)
+  * [header](#header)
+  * [cookie](#cookie)
+  * [rewrite](#rewrite)
 * Simple string access
 
 ## Installation
 It's very simple to include this library in your project.
 
-**Composer**
+### Composer
 
 add this to your `composer.json` and run `composer install`:
-```
+```json
+{
 "repositories": [
         {
             "type": "vcs",
@@ -24,17 +25,16 @@ add this to your `composer.json` and run `composer install`:
     "require": {
         "multlang/multlang": "dev-master"
     }
+}
 ```
 
-_or_
+### Download Zip
 
-**Download Zip**
+[https://github.com/StefanSchomacker/MultLang/archive/master.zip](https://github.com/StefanSchomacker/MultLang/archive/master.zip)
 
-_or_
+### Clone Git
 
-**Clone Git**
-
-```
+```bash
 git clone https://github.com/StefanSchomacker/MultLang.git
 ```
 
@@ -81,15 +81,15 @@ _**/dictionary/german.xml:**_
 ### Configuration
 Edit config values if needed:
 
-const | default value | description
------------- | ------------- | -------------
-DOCUMENT_ROOT | `dirname(__DIR__) . DIRECTORY_SEPARATOR` | Path to document root
-PATH_TO_DICTIONARIES | `DOCUMENT_ROOT . DIRECTORY_SEPARATOR . 'dictionary' . DIRECTORY_SEPARATOR` | Path to dictionary folder. Folder contains all XML files
-DEFAULT_LANGUAGE | `en` | Default language in ISO 639-1 format. The constant will be used, if language cannot be determined
-DEFAULT_DICTIONARY | `default.xml` | This XML file will be used, if other files are not available. This file should contain all string items.
-LANGUAGE_DETECTION | `cookie` | This defines the method to detect the language. Choose between **['header'](#header)**, **['cookie'](#cookie)** and **['rewrite'](#rewrite)**.
-COOKIE_NAME | `language` | Default key for the cookie.
-SUPPORTED_LANGUAGES | `array(DEFAULT_LANGUAGE => DEFAULT_DICTIONARY)` | Contains all supported languages. <br/> Example: `"de" => "german.xml",`
+| const | default value | description |
+| ------------ | ------------- | ------------- |
+| DOCUMENT_ROOT | `dirname(__DIR__) . DIRECTORY_SEPARATOR` | Path to document root |
+| PATH_TO_DICTIONARIES | `DOCUMENT_ROOT . DIRECTORY_SEPARATOR . 'dictionary' . DIRECTORY_SEPARATOR` | Path to dictionary folder. Folder contains all XML files |
+| DEFAULT_LANGUAGE | `en` | Default language in ISO 639-1 format. The constant will be used, if language cannot be determined |
+| DEFAULT_DICTIONARY | `default.xml` | This XML file will be used, if other files are not available. This file should contain all string items. |
+| LANGUAGE_DETECTION | `cookie` | This defines the method to detect the language. Choose between **['header'](#header)**, **['cookie'](#cookie)** and **['rewrite'](#rewrite)**. |
+| COOKIE_NAME | `language` | Default key for the cookie. |
+| SUPPORTED_LANGUAGES | `array(DEFAULT_LANGUAGE => DEFAULT_DICTIONARY)` | Contains all supported languages. <br/> Example: `"de" => "german.xml",` |
 
 Example:
 ```php
@@ -125,7 +125,7 @@ Feel free to create a new
 [Pull request](https://github.com/StefanSchomacker/MultLang/pulls)
 
 ## License
-    Copyright 2017 Stefan Schomacker
+    Copyright 2019 Stefan Schomacker
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
