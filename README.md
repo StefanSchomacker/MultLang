@@ -1,4 +1,4 @@
-# MultLang - PHP Multi-Language Support [![Build Status](https://github.com/StefanSchomacker/MultLang/workflows/PHP%20Composer%20CI/badge.svg)](https://github.com/StefanSchomacker/MultLang/actions)
+# MultLang - PHP Multi-Language Support ![PHP Composer CI](https://github.com/StefanSchomacker/MultLang/workflows/PHP%20Composer%20CI/badge.svg)
 
 ## Overview
 * All strings are saved in XML files
