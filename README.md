@@ -125,7 +125,7 @@ Feel free to create a new
 [Pull request](https://github.com/StefanSchomacker/MultLang/pulls)
 
 ## License
-    Copyright 2019 Stefan Schomacker
+    Copyright 2020 Stefan Schomacker
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
