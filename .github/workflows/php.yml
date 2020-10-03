@@ -7,8 +7,17 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    strategy:
+      php-version: ['7.3', '7.4']
+
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup php version
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
 
       - name: Self update composer
         run: composer self-update
