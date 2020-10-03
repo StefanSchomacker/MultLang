@@ -22,7 +22,7 @@ jobs:
       - name: Self update composer
         run: composer self-update
 
-      - name: Validate composer.json and composer.lock
+      - name: Validate composer files
         run: composer validate
 
       - name: Install dependencies
