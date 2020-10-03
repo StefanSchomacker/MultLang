@@ -1,29 +1,19 @@
 name: PHP Composer CI
 
-on: [push, pull_request]
+on: [ push, pull_request ]
 
 jobs:
   build:
 
-    runs-on: ${{ matrix.operating-system }}
-
-    strategy:
-      operating-system: [ubuntu-latest]
-      php-versions: ['7.3', '7.4']
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Setup php version
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php-versions }}
+      - uses: actions/checkout@v2
 
       - name: Self update composer
         run: composer self-update
 
-      - name: Validate composer files
+      - name: Validate composer.json and composer.lock
         run: composer validate
 
       - name: Install dependencies
